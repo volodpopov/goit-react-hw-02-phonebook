@@ -28,8 +28,8 @@ class App extends Component {
       this.setState(prevState => {
         if (
           prevState.contacts
-            .reduce((acc, contact) => [...acc, contact.name], [])
-            .includes(contact.name)
+            .reduce((acc, contact) => [...acc, contact.name.toLowerCase()], [])
+            .includes(contact.name.toLowerCase())
         ) {
           alert(`${contact.name} is already in contacts.`);
           return null;
@@ -51,11 +51,8 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
-
-    const normalizedFilter = this.state.filter.toLowerCase();
-
     const findContacts = this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
+      contact.name.includes(filter),
     );
     return (
       <div className={s.container}>
