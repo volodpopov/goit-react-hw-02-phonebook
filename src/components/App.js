@@ -26,11 +26,7 @@ class App extends Component {
     };
     if (contact.name.trim() !== '' && contact.number.trim() !== '') {
       this.setState(prevState => {
-        if (
-          prevState.contacts
-            .reduce((acc, contact) => [...acc, contact.name.toLowerCase()], [])
-            .includes(contact.name.toLowerCase())
-        ) {
+        if (prevState.contacts.map(data => data.name).includes(contact.name)) {
           alert(`${contact.name} is already in contacts.`);
           return null;
         }
